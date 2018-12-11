@@ -1,8 +1,9 @@
 const $main = $('main')
 const $selector = $('#image-selector')
 const allHorns = []
+const allKeywords= []
 
-const apiURL = 'https://raw.githubusercontent.com/Eyasu/lab/master/data/page-1.json' 
+const apiURL = 'https://raw.githubusercontent.com/EyasuG/lab-02-repository/aa313f275fae655e9c40abfaae43c9ac33597812/page-1.json' 
 
 const Horn = function(title, filePath, description, keyword) {
   this.title = title
@@ -10,11 +11,10 @@ const Horn = function(title, filePath, description, keyword) {
   this.description = description
   this.keyword=keyword
 }
-
 Horn.prototype.displayHorn = function() {
   const $cloneHorn= $('#template').clone()
   $main.append($cloneHorn)
-  $cloneHorn.attr('id', this.title)
+  $cloneHorn.attr('class', this.title)
   $cloneHorn.find('img').attr('class', 'images')
   $cloneHorn.find('img').attr('src', this.path)
   $cloneHorn.find('img').attr('alt', this.description)
@@ -22,21 +22,25 @@ Horn.prototype.displayHorn = function() {
 }
 $($selector).on('change', () => {
   $('div').hide()
-  $(`#${event.target.value}`).show()
+  $(`.${event.target.value}`).show()
 })
+
 $.getJSON(apiURL)
-.then(response=>{
-  response.forEach(image=>{
-    let Horn_collection=new Horn(image.title,image.filepath, image.description, image.keyword) 
-    Horn_collection.displayimage()
-    allHorns.push(Horn_collection)
-    $selector.append(`<option value=${Horn_collection.title}>${Horn_collection.title}</option>`)
+.then(response=> {
+  response.forEach(horn=>{
+    let newHorn = new Horn(horn.title,horn.filepath, horn.description, horn.keyword) 
+    newHorn.displayHorn()
+    allHorns.push(newHorn)
+    $selector.append(`<option value=${newHorn.title}>${newHorn.title}</option>`)
     })
-    console.log($(`option[value='']`))
-if($(`option[value= '']`[0])){
+    console.log($(`option[value='narwhal']`))
+if($(`option[value= 'horn']`[0])){
   console.log('nope')
-}
+  }
 })
+
+
+
 
 
 
