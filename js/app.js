@@ -3,11 +3,11 @@ const $selector = $('#image-selector')
 const allHorns = []
 const allKeywords= []
 
-const apiURL = 'https://raw.githubusercontent.com/EyasuG/lab-02-repository/aa313f275fae655e9c40abfaae43c9ac33597812/page-1.json' 
+const apiURL = 'https://raw.githubusercontent.com/EyasuG/lab-02-repository/master/data/page-1.json' 
 
-const Horn = function(title, filePath, description, keyword) {
+const Horn = function(title, path, description, keyword) {
   this.title = title
-  this.path = filePath
+  this.path = path
   this.description = description
   this.keyword=keyword
 }
@@ -28,38 +28,15 @@ $($selector).on('change', () => {
 $.getJSON(apiURL)
 .then(response=> {
   response.forEach(horn=>{
-    let newHorn = new Horn(horn.title,horn.filepath, horn.description, horn.keyword) 
+    let newHorn = new Horn(horn.title, horn.image_url, horn.description, horn.keyword) 
     newHorn.displayHorn()
     allHorns.push(newHorn)
     $selector.append(`<option value=${newHorn.title}>${newHorn.title}</option>`)
     })
-    console.log($(`option[value='narwhal']`))
-if($(`option[value= 'horn']`[0])){
-  console.log('nope')
-  }
+//     console.log($(`option[value='UniWhal']`))
+// if($(`option[value= 'horn']`[0])){
+//   console.log('nope')
+//   }
 })
-
-
-
-
-
-
-
- //$.getJSON(apiURL)
-//   .then(response => {
-//     response.forEach(dog => {
-//       let newDog = new Dog(dog.name, dog.image_url, dog.hobbies)
-//       newDog.displayDog()
-//       allDogs.push(newDog)
-//       $selector.append(`<option value=${newDog.title}>${newDog.title}</option>`)
-//     })
-//     console.log($(`option[value='Odie']`))
-//     if($(`option[value='dog']`[0])) {
-//       console.log('nope')
-//     }
-//   })
-
-
-
 
 
