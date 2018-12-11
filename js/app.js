@@ -3,7 +3,7 @@ const $selector = $('#image-selector')
 const allHorns = []
 const allKeywords= []
 
-const apiURL = 'https://raw.githubusercontent.com/EyasuG/lab-02-repository/aa313f275fae655e9c40abfaae43c9ac33597812/page-1.json' 
+const apiURL = 'https://raw.githubusercontent.com/EyasuG/lab-02-repository/master/data/page-1.json' 
 
 const Horn = function(title, filePath, description, keyword) {
   this.title = title
